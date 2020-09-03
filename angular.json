@@ -23,6 +23,18 @@
             "polyfills": "src/polyfills.ts",
             "tsConfig": "tsconfig.app.json",
             "aot": true,
+            "allowedCommonJsDependencies": [
+              "firebase",
+              "@angular/common/locales/fr",
+              "lodash/dropRight",
+              "@firebase/app",
+              "firebase/app",
+              "@firebase/database",
+              "@firebase/firestore",
+              "@firebase/functions",
+              "@firebase/performance",
+              "@firebase/remote-config"
+            ],
             "assets": [
               "src/favicon.ico",
               "src/assets"
@@ -123,6 +135,10 @@
           }
         }
       }
-    }},
-  "defaultProject": "deputy-superadmin-app"
+    }
+  },
+  "defaultProject": "deputy-superadmin-app",
+  "cli": {
+    "analytics": false
+  }
 }
