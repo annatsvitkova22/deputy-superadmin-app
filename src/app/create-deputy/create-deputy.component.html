@@ -1,0 +1,25 @@
+<div class="container">
+    <div class="wrapper-form">
+        <form (ngSubmit)="onSubmit(f.value)" #f="ngForm" >
+            <app-generic-input
+                [isRequired]="true"
+                [errorMsg]="'Please enter your name'"
+                [label] = "'Full name'"
+                [id] = "'name'"
+                ngModel name="name">
+            </app-generic-input>
+            <app-generic-input
+                [isRequired]="true"
+                [errorMsg]="'Please enter your email'"
+                [label] = "'Login'"
+                [id] = "'email'"
+                [pattern]="'[A-Za-z0-9._%-+]+@[A-Za-z0-9._%-]+\\.[a-z]{2,20}'"
+                ngModel name="email">
+            </app-generic-input>
+            <div *ngIf="isError" class="is-invalid is-auth">
+                <p>{{message}}</p>
+            </div>
+            <button [disabled]="!f.valid" type="submit" class="btn btn-blue btn-big">Create account</button>
+        </form>
+    </div>
+</div>
