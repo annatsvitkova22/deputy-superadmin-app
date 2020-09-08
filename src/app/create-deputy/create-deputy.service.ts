@@ -1,46 +1,47 @@
 import { Injectable } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/auth';
-import { AngularFirestore } from '@angular/fire/firestore';
-import { auth } from 'firebase';
-import { Router } from '@angular/router';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Observable, throwError } from 'rxjs';
+import { catchError } from 'rxjs/operators';
+import { CreateDeputyModel, ResultModel } from '../../models';
 
 @Injectable()
 export class DeputyService {
+    private createDeputyPath: string = 'https://us-central1-deputy-app.cloudfunctions.net/sendEmailDeputyForCreate';
 
     constructor(
-        private authFire: AngularFireAuth,
-        private db: AngularFirestore,
-        private router: Router
+        private httpClient: HttpClient
     ) {}
 
-    async createDeputy({email, name}): Promise<boolean> {
-        let success: boolean = false;
+    async createDeputy({email, name}): Promise<ResultModel> {
+        let result: ResultModel;
         const randomPassword: string = Math.random().toString(36).substring(2) + Math.max(1, Math.min(10));
-        console.log('randomPassword', randomPassword)
-        await this.authFire.createUserWithEmailAndPassword(email, randomPassword).then(async result => {
-            console.log('result', result);
-            // this.writeDeputyToCollection(result.user.uid,)
+        const data: CreateDeputyModel = {
+            email,
+            name,
+            password: randomPassword,
+            role: 'deputy'
+        };
+        await this.sendEmailDeputy(data).toPromise().then((res: boolean) => {
+            result = {
+                status: res
+            };
 
-            this.router.navigate(['/']);
-        }).catch(err => {
-            success = true;
+        }, (error) => {
+            result = {
+                status: false,
+                message: error.message
+            };
         });
 
-        return success;
+        return result;
     }
 
-    async writeDeputyToCollection(userId: string, name: string, email: string): Promise<boolean> {
-        try {
-            await this.db.collection('users').doc(userId).set({
-                name,
-                email,
-                role: 'deputy'
-            });
-        } catch (error) {
-            return error;
-        }
-
-        return true;
+    sendEmailDeputy(data: CreateDeputyModel): Observable<any> {
+        return this.httpClient.post(this.createDeputyPath, data)
+            .pipe(catchError(this.errorHandler));
     }
 
+    errorHandler(error: HttpErrorResponse) {
+        return throwError(error.message || 'Server Error');
+    }
 }

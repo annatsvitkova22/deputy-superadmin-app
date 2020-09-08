@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { DeputyService } from './create-deputy.service';
+import { ResultModel } from '../../models';
 
 @Component({
   selector: 'app-create-deputy',
@@ -15,8 +16,8 @@ export class CreateDeputyComponent {
   ) { }
 
   onSubmit = async (data) => {
-    this.deputyService.createDeputy(data);
-    console.log('data', data)
+    const res: ResultModel = await this.deputyService.createDeputy(data);
+    this.isError = !res.status;
+    this.message = res.status ? null : res.message;
   }
-
 }
