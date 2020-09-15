@@ -17,7 +17,7 @@ export class CreateDeputyComponent {
 
   onSubmit = async (data) => {
     const res: ResultModel = await this.deputyService.createDeputy(data);
-    this.isError = !res.status;
-    this.message = res.status ? null : res.message;
+    this.isError = true;
+    this.message = res.status ? 'Account was created' : res.message;
   }
 }

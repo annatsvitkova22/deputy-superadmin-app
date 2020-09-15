@@ -3,15 +3,29 @@
         <form (ngSubmit)="onSubmit(f.value)" #f="ngForm" >
             <app-generic-input
                 [isRequired]="true"
-                [errorMsg]="'Please enter your name'"
-                [label] = "'Full name'"
+                [errorMsg]="'Обов`язкове поле'"
+                [label] = "'Iм`я'"
                 [id] = "'name'"
                 ngModel name="name">
             </app-generic-input>
             <app-generic-input
                 [isRequired]="true"
-                [errorMsg]="'Please enter your email'"
-                [label] = "'Login'"
+                [errorMsg]="'Обов`язкове поле'"
+                [label] = "'Прiзвище'"
+                [id] = "'surname'"
+                ngModel name="surname">
+            </app-generic-input>
+            <app-generic-input
+                [isRequired]="true"
+                [errorMsg]="'Обов`язкове поле'"
+                [label] = "'По батьковi'"
+                [id] = "'patronymic'"
+                ngModel name="patronymic">
+            </app-generic-input>
+            <app-generic-input
+                [isRequired]="true"
+                [errorMsg]="'Обов`язкове поле'"
+                [label] = "'Email'"
                 [id] = "'email'"
                 [pattern]="'[A-Za-z0-9._%-+]+@[A-Za-z0-9._%-]+\\.[a-z]{2,20}'"
                 ngModel name="email">

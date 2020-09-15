@@ -1,8 +1,11 @@
 export interface CreateDeputyModel {
     name: string;
+    surname: string;
+    patronymic: string;
     email: string;
-    role: string;
-    password: string;
+    role?: string;
+    password?: string;
+    fullName?: string;
 }
 
 export interface AuthUser {

@@ -8,7 +8,7 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
 
 const routes: Routes = [
   { path: '', pathMatch: 'full', component: CreateDeputyComponent, canActivate: [AuthGuard] },
-  { path: 'create-deputy', component: CreateDeputyComponent },
+  { path: 'create-deputy', component: CreateDeputyComponent, canActivate: [AuthGuard] },
   { path: 'login', component: AuthComponent },
   { path: 'resetPassword', component: ResetPasswordComponent},
 ];

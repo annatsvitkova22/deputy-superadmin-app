@@ -22,9 +22,11 @@
     "@angular/router": "~10.0.14",
     "@ngrx/store": "^10.0.0",
     "add": "^2.0.6",
+    "cyrillic-to-translit-js": "^3.1.0",
     "firebase": "^7.19.1",
     "ng": "0.0.0",
     "rxjs": "~6.5.5",
+    "transliteration": "^2.1.11",
     "tslib": "^2.0.0",
     "zone.js": "~0.10.3"
   },
