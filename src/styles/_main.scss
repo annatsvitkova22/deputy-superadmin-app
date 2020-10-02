@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css?family=Rubik:300,400,500,700,900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
 @import 'variables';
 
 *,
@@ -8,22 +8,27 @@
 }
 
 body {
-    background-color: $white;
+    background-color: $gray-1;
     overflow-x: hidden;
-    font-size: 16px;
+    font-size: 14px;
     line-height: 1;
-    font-family: 'Rubik', sans-serif;
-    color: $black;
+    font-family: 'Inter', sans-serif;
+    color: $black-main;
+    margin: 0;
 }
 
 a {
     display: inline-block;
-    color: $black;
+    color: $black-main;
     text-decoration: none;
     &:hover,
     &:focus {
-        color: $black;
+        color: $black-main;
     }
+}
+
+.main {
+    margin-bottom: 50px;
 }
 
 .list-reset {
@@ -69,24 +74,35 @@ p {
 }
 
 .container {
-    max-width: 1300px;
-    padding: 0 15px;
+    max-width: 972px;
+    padding: 0 16px;
     margin-left: auto;
     margin-right: auto;
+
+    &__big {
+        max-width: 1440px;
+        padding: 0 30px;
+    }
+
+    &__small {
+        max-width: 652px;
+    }
+
+    &__extra-small {
+        max-width: 492px;
+    }
 }
 
 .btn {
-    font-size: 16px;
-    padding: 7px 10px;
-    border-radius: 4px;
-    background-color: $white;
+    padding: 12px 32px;
+    border-radius: 8px;
+    background-color: $gray-17;
+    font-weight: 600;
+    line-height: 1.43;
+    border: none;
     text-align: center;
     transition: all 0.3s;
     cursor: pointer;
-
-    &:hover {
-        color: $white;
-    }
 
     &:focus {
         outline: none;
@@ -97,30 +113,69 @@ p {
         opacity: 0.5;
     }
 
-    &-blue {
-        border: 1px solid $blue;
-        color: $blue;
+    &__small {
+        padding: 6px 11px;
+        font-weight: 500;
+        font-size: 12px;
+        line-height: 1.67;
+        letter-spacing: 0.01em;
+    }
+
+    &-dark {
+        border: 1px solid $gray-7;
+        background-color: $gray-7;
+        color: $white;
 
         &:hover {
-            background-color: $blue;
+            background-color: $white;
+            border: 1px solid $gray-7;
+            color: $gray-7;
+        }
+    }
+
+    &-blue {
+        border: 1px solid $blue;
+        background-color: $blue;
+        color: $white;
+        padding: 9px 32px;
+
+        &:hover {
+            background-color: $white;
+            border: 1px solid $blue;
+            color: $blue;
+
+            path {
+                fill: $blue;
+            }
         }
     }
 
     &-red {
         border: 1px solid $red;
-        color: $red;
+        background-color: $red;
+        color: $white;
+        padding: 11px 32px;
 
         &:hover {
-            background-color: $red;
+            background-color: $white;
+            border: 1px solid $red;
+            color: $red;
+
+            path {
+                fill: $red;
+            }
         }
     }
 
     &-green {
         border: 1px solid $green;
-        color: $green;
+        background-color: $green;
+        color: $white;
 
         &:hover {
-            background-color: $green;
+            background-color: $white;
+            border: 1px solid $green;
+            color: $green;
         }
     }
 
@@ -129,24 +184,68 @@ p {
     }
 }
 
-.form-control {
-    width: 100%;
-    margin-top: 5px;
-    padding: 7px 10px;
-    border-radius: 4px;
-    border: 1px solid $gray-10;
+.tx-center {
+    text-align: center;
 }
 
-.form-group {
-    padding:10px 0;
+.card-shadow {
+    background: $white;
+    border-radius: 8px;
+}
 
-    &:last-of-type {
-        padding: 0 0 10px;
+.wrapper {
+    padding: 20px;
+
+    &-big {
+        padding: 35px 80px 48px;
     }
 }
 
-.mt-10 {
-    margin-top: 10px;
+.input {
+    -webkit-appearance: none !important;
+    background-color: $white;
+    width: 100%;
+    padding: 13px 16px;
+    border-radius: 4px;
+    border: 1px solid $gray-19;
+    line-height: 1.57;
+    color: $black-1;
+    cursor: pointer;
+    transition: all 0.3s;
+
+    &::placeholder {
+        color: $gray-20;
+        font-family: 'Inter', sans-serif;
+        font-size: 14px;
+    }
+
+    &:focus {
+        outline: none;
+    }
+}
+
+$values: (2, 4, 6, 8, 10, 14, 12, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 40);
+
+@each $value in $values {
+    .mt {
+        &-#{$value} {
+            margin-top: #{$value}px;
+        }
+    }
+
+    .mb {
+        &-#{$value} {
+            margin-bottom: #{$value}px;
+        }
+    }
+}
+
+.w-100 {
+    width: 100%;
+}
+
+.w-50 {
+    width: 50%;
 }
 
 .is-invalid {
@@ -154,11 +253,55 @@ p {
 }
 
 .wrapper-form {
-    margin-top: 50px;
-    padding: 20px;
-    max-width: 350px;
-    margin-left: auto;
-    margin-right: auto;
-    border: 1px solid $gray-10;
-    border-radius: 4px;
+    padding: 35px 70px 45px;
+    margin-top: 28px;
+}
+
+.main-title {
+    font-weight: 600;
+    font-size: 20px;
+    line-height: 1.39;
+    letter-spacing: 0.01em;
+    color: $black-1;
+}
+
+.form-group {
+    margin-bottom: 24px;
+}
+
+path {
+    transition: all 0.3s;
+}
+
+.social-btn {
+    vertical-align: middle;
+
+    &--google {
+        margin-left: 10px;
+    }
+
+    &--facebook {
+        margin-left: 16px;
+    }
+}
+
+.wrap {
+    flex-wrap: wrap;
+}
+
+.ng-input {
+    visibility: hidden;
+}
+
+.overflow-hidden {
+    overflow: hidden;
+}
+
+.auth-btn-link {
+    font-size: 13px;
+    line-height: 16px;
+    text-decoration-line: underline;
+    color: $blue-2;
+    cursor: pointer;
+    transition: all 0.3s;
 }

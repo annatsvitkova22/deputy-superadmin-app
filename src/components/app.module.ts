@@ -3,19 +3,17 @@ import { NgModule } from '@angular/core';
 import { AngularFireModule } from '@angular/fire';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { StoreModule } from '@ngrx/store';
 
 import { AppRoutingModule } from './app-routing.module';
-import { AppComponent } from './app.component';
 import { environment } from '../environments/environment';
-import { CreateDeputyComponent } from './create-deputy/create-deputy.component';
-import { GenericInputComponent } from './generic-input/generic-input.component';
-import { DeputyService } from './create-deputy/create-deputy.service';
-import { AuthComponent } from './auth/auth.component';
-import { AuthService } from './auth/auth.service';
-import { AuthGuard } from './auth.guard';
-import { StoreModule } from '@ngrx/store';
 import { authReducer } from '../store/auth.reducer';
-import { ResetPasswordComponent } from './reset-password/reset-password.component';
+import { HeaderComponent, AppComponent, CreateDeputyComponent,
+  GenericInputComponent, AuthComponent,
+  DeputyService, AuthService, AuthGuard } from '.';
+import { LoginComponent } from '../pages/login/login.component';
+import { AvatarComponent } from './avatar/avatar.component';
+import { ResetPasswordComponent } from '../pages/reset-password/reset-password.component';
 
 @NgModule({
   declarations: [
@@ -23,7 +21,10 @@ import { ResetPasswordComponent } from './reset-password/reset-password.componen
     CreateDeputyComponent,
     GenericInputComponent,
     AuthComponent,
-    ResetPasswordComponent
+    ResetPasswordComponent,
+    HeaderComponent,
+    LoginComponent,
+    AvatarComponent
   ],
   imports: [
     BrowserModule,

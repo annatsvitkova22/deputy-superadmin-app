@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { AuthService } from './auth.service';
+import { ResultModel } from '../../models';
 
 
 @Component({
@@ -19,8 +20,10 @@ export class AuthComponent implements OnInit {
   ngOnInit() {}
 
   onSubmit = async ({email, password}) => {
-    this.isError = await this.authService.signIn(email, password);
-    this.message = 'Wrong login or password';
+    const result: ResultModel = await this.authService.signIn(email, password);
+    if (result.status) {
+      window.alert(result.message);
+    }
   }
 
 }

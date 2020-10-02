@@ -1,0 +1,29 @@
+<main class="main">
+    <div class="container container__extra-small">
+        <div class="wrapper-form card-shadow">
+            <form (ngSubmit)="onSubmit(f.value)" #f="ngForm" >
+                <h2 class="main-title mb-32">Авторизація</h2>
+                <app-generic-input
+                    [isRequired]="true"
+                    [errorMsg]="'Будь-ласка введіть ваш Email'"
+                    [placeholder] = "'Email'"
+                    [id] = "'email'"
+                    [pattern]="'[A-Za-z0-9._%-+]+@[A-Za-z0-9._%-]+\\.[a-z]{2,20}'"
+                    ngModel name="email">
+                </app-generic-input>
+                <app-generic-input
+                    [isRequired]="true"
+                    [errorMsg]="'Будь-ласка введіть ваш пароль'"
+                    [placeholder] = "'Пароль'"
+                    [id] = "'password'"
+                    [type] = "'password'"
+                    ngModel name="password">
+                </app-generic-input>
+                <button [disabled]="!f.valid" type="submit" class="btn btn-green btn-big mt-8">Увійти</button>
+                <div class="mt-24 d-flex justify-content-center">
+                    <a [routerLink]="['/reset-password']" class="auth-btn-link">Забули пароль?</a>
+                </div>
+            </form>
+        </div>
+    </div>    
+</main>
