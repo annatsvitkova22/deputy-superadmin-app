@@ -17,11 +17,6 @@ export class HeaderComponent implements OnInit {
         {name: 'Налаштування', path: '/edit'},
         {name: 'Вийти', path: 'signout'}
     ];
-    links = [
-        {name: 'Запити', path: '/'},
-        {name: 'Депутати', path: '/deputies'},
-        {name: 'Про проект', path: '/about-project'}
-    ];
     isOpen: boolean;
     isDropdown: boolean;
     isCreateAppeal: boolean;
@@ -58,25 +53,8 @@ export class HeaderComponent implements OnInit {
         }
     }
 
-    onMobileLink(): void {
-        const bodyElement = document.getElementsByTagName('body');
-        bodyElement[0].style.overflow = 'visible';
-    }
-
-    isCurrentRoute(route: string): boolean {
-        return this.router.url === route;
-    }
-
     onOpenMenu(): void {
         this.isOpen = !this.isOpen;
-
-        if (this.isOpen) {
-            const bodyElement = document.getElementsByTagName('body');
-            bodyElement[0].style.overflow = 'hidden';
-        } else {
-            const bodyElement = document.getElementsByTagName('body');
-            bodyElement[0].style.overflow = 'visible';
-        }
     }
 
     onOpenDropdown(): void {

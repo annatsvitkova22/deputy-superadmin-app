@@ -9,11 +9,11 @@ import { AppRoutingModule } from './app-routing.module';
 import { environment } from '../environments/environment';
 import { authReducer } from '../store/auth.reducer';
 import { HeaderComponent, AppComponent, CreateDeputyComponent,
-  GenericInputComponent, AuthComponent,
-  DeputyService, AuthService, AuthGuard } from '.';
+  GenericInputComponent, AuthComponent, DeputyService, AuthService, AuthGuard, MainComponent } from '.';
 import { LoginComponent } from '../pages/login/login.component';
 import { AvatarComponent } from './avatar/avatar.component';
 import { ResetPasswordComponent } from '../pages/reset-password/reset-password.component';
+import { SidebarComponent } from './sidebar/sidebar.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +24,9 @@ import { ResetPasswordComponent } from '../pages/reset-password/reset-password.c
     ResetPasswordComponent,
     HeaderComponent,
     LoginComponent,
-    AvatarComponent
+    AvatarComponent,
+    MainComponent,
+    SidebarComponent
   ],
   imports: [
     BrowserModule,

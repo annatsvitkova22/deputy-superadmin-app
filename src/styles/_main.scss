@@ -80,7 +80,7 @@ p {
     margin-right: auto;
 
     &__big {
-        max-width: 1440px;
+        max-width: 100%;
         padding: 0 30px;
     }
 
@@ -130,40 +130,6 @@ p {
             background-color: $white;
             border: 1px solid $gray-7;
             color: $gray-7;
-        }
-    }
-
-    &-blue {
-        border: 1px solid $blue;
-        background-color: $blue;
-        color: $white;
-        padding: 9px 32px;
-
-        &:hover {
-            background-color: $white;
-            border: 1px solid $blue;
-            color: $blue;
-
-            path {
-                fill: $blue;
-            }
-        }
-    }
-
-    &-red {
-        border: 1px solid $red;
-        background-color: $red;
-        color: $white;
-        padding: 11px 32px;
-
-        &:hover {
-            background-color: $white;
-            border: 1px solid $red;
-            color: $red;
-
-            path {
-                fill: $red;
-            }
         }
     }
 
@@ -304,4 +270,18 @@ path {
     color: $blue-2;
     cursor: pointer;
     transition: all 0.3s;
+}
+
+@media only screen and (max-width: 560px) {
+    .wrapper-big {
+        padding: 24px;
+    }
+
+    .wrapper-form {
+        padding: 24px 24px 36px;
+    }
+
+    .btn {
+        padding: 12px 20px;
+    }
 }

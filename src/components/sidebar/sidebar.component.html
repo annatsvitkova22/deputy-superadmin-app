@@ -1,0 +1,11 @@
+<aside class="sidebar">
+    <nav class="sidebar__wrap">
+        <ul class="list-reset">
+            <li *ngFor="let link of links" class="sidebar__item">
+                <a routerLink={{link.path}} class="sidebar__link" [class.header__link--active]='isCurrentRoute(link.path)'>
+                    {{link.name}}
+                </a>
+            </li>
+        </ul>
+    </nav>
+</aside>
