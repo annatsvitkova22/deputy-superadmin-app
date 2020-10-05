@@ -1,4 +1,4 @@
-import { Component, OnInit, HostListener } from '@angular/core';
+import { Component, OnInit, HostListener, Input, Output, EventEmitter } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
 import { AuthService } from '../auth/auth.service';
@@ -10,6 +10,8 @@ import { UserAvatal } from '../../models';
     styleUrls: ['./header.component.scss']
 })
 export class HeaderComponent implements OnInit {
+    @Input() isMenu: boolean;
+    @Output() onMenuActive = new EventEmitter();
     shortName: string;
     imageUrl: string;
     dropdownLinks = [
@@ -55,6 +57,7 @@ export class HeaderComponent implements OnInit {
 
     onOpenMenu(): void {
         this.isOpen = !this.isOpen;
+        this.onMenuActive.emit(this.isOpen);
     }
 
     onOpenDropdown(): void {

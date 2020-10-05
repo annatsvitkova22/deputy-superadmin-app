@@ -1,7 +1,7 @@
 <header class="header">
     <div class="container container__big">
         <div class="d-flex justify-content-between align-items-center">
-            <div class="header__burger" (click)="onOpenMenu()" [class.header__burger--active]='isOpen'>
+            <div *ngIf="isMenu" class="header__burger" (click)="onOpenMenu()" [class.header__burger--active]='isOpen'>
                 <span></span>
                 <span></span>
                 <span></span>

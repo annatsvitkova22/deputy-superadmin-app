@@ -1,7 +1,7 @@
 @import '../../styles/variables';
 
 .sidebar {
-    width: 240px;
+    width: 64px;
     height: calc(100vh - 76px);
     z-index: 10;
     background: $white;
@@ -9,11 +9,25 @@
     transition: .2s ease-in;
     overflow: hidden;
 
+    &--active {
+        width: 240px;
+    }
+
     &__wrap {
         padding: 20px;
     }
 
     &__link {
-        padding: 12px 16px;
+        display: flex;
+        align-items: center;
+        padding: 12px 16px 12px 0;
+
+        &--active {
+            color: $green;
+        }
+    }
+
+    &__link-name {
+        padding-left: 20px;
     }
 }

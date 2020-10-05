@@ -7,6 +7,11 @@ import { Component } from '@angular/core';
     styleUrls: ['./main.component.scss']
 })
 export class MainComponent {
+    isSidebarActive: boolean;
 
     constructor(){}
+
+    onActiveSidebar(isActive: boolean): void {
+        this.isSidebarActive = isActive;
+    }
 }

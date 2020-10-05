@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 
 
@@ -8,16 +8,12 @@ import { Router } from '@angular/router';
     styleUrls: ['./sidebar.component.scss']
 })
 export class SidebarComponent {
+    @Input() isActive: boolean;
     links = [
-        {name: 'Користувачи', path: '/dashbord/users'},
-        {name: 'Депутати', path: '/users'},
-        {name: 'Запити', path: '/users'},
-        {name: 'Користувачи', path: '/users'},
-        {name: 'Депутати', path: '/users'},
-        {name: 'Запити', path: '/users'},
-        {name: 'Користувачи', path: '/users'},
-        {name: 'Депутати', path: '/users'},
-        {name: 'Запити', path: '/users'}
+        {name: 'Користувачи', path: '/dashbord/users', icon: 'people'},
+        {name: 'Сповіщення', path: '/dashbord/notifications', icon: 'notifications'},
+        {name: 'Зареєструвати депутата', path: '/dashbord/create-deputy', icon: 'person_add'},
+        {name: 'Налаштування', path: '/dashbord/settings', icon: 'settings'},
     ];
 
     constructor(

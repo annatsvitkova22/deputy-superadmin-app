@@ -8,17 +8,17 @@ import { StoreModule } from '@ngrx/store';
 import { AppRoutingModule } from './app-routing.module';
 import { environment } from '../environments/environment';
 import { authReducer } from '../store/auth.reducer';
-import { HeaderComponent, AppComponent, CreateDeputyComponent,
-  GenericInputComponent, AuthComponent, DeputyService, AuthService, AuthGuard, MainComponent } from '.';
+import { HeaderComponent, AppComponent,
+  GenericInputComponent, AuthComponent, DeputyService, AuthService, AuthGuard, MainComponent, CreateDeputyComponent } from '.';
 import { LoginComponent } from '../pages/login/login.component';
 import { AvatarComponent } from './avatar/avatar.component';
 import { ResetPasswordComponent } from '../pages/reset-password/reset-password.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
     AppComponent,
-    CreateDeputyComponent,
     GenericInputComponent,
     AuthComponent,
     ResetPasswordComponent,
@@ -26,7 +26,8 @@ import { SidebarComponent } from './sidebar/sidebar.component';
     LoginComponent,
     AvatarComponent,
     MainComponent,
-    SidebarComponent
+    SidebarComponent,
+    CreateDeputyComponent,
   ],
   imports: [
     BrowserModule,
@@ -36,6 +37,7 @@ import { SidebarComponent } from './sidebar/sidebar.component';
     ReactiveFormsModule,
     StoreModule.forRoot({authStore: authReducer}),
     AngularFireModule.initializeApp(environment.firebaseConfig),
+    NoopAnimationsModule,
   ],
   providers: [
     DeputyService,

@@ -38,3 +38,15 @@ export interface UserAvatal {
     imageUrl: string;
     shortName: string;
 }
+
+export interface User {
+    id?: string;
+    name: string;
+    surname?: string;
+    patronymic?: string;
+    password?: string;
+    email: string;
+    role: string;
+    isDesabled?: boolean;
+    fullName?: string;
+}

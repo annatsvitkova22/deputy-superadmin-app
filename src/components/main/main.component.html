@@ -1,7 +1,9 @@
-<app-header></app-header>
+<app-header [isMenu]=true (onMenuActive)="onActiveSidebar($event)"></app-header>
 <main>
     <div class="d-flex">
-        <app-sidebar></app-sidebar>
-        <router-outlet></router-outlet>
+        <app-sidebar [isActive]="isSidebarActive"></app-sidebar>
+        <div class="w-100 overflow-hidden">
+            <router-outlet></router-outlet>
+        </div>
     </div>
 </main>

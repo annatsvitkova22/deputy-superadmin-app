@@ -8,7 +8,7 @@ import { CreateDeputyModel, ResultModel } from '../../models';
 
 @Injectable()
 export class DeputyService {
-    private createDeputyPath: string = 'https://us-central1-deputy-app.cloudfunctions.net/sendEmailDeputyForCreate';
+    private createDeputyPath: string = 'https://us-central1-deputy-app.cloudfunctions.net/createUser';
 
     constructor(
         private httpClient: HttpClient

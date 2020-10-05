@@ -1,9 +1,9 @@
-<aside class="sidebar">
+<aside class="sidebar" [class.sidebar--active]='isActive'>
     <nav class="sidebar__wrap">
         <ul class="list-reset">
             <li *ngFor="let link of links" class="sidebar__item">
-                <a routerLink={{link.path}} class="sidebar__link" [class.header__link--active]='isCurrentRoute(link.path)'>
-                    {{link.name}}
+                <a routerLink={{link.path}} class="sidebar__link" [class.sidebar__link--active]='isCurrentRoute(link.path)'>
+                    <i class="material-icons">{{link.icon}}</i> <p class="sidebar__link-name">{{link.name}}</p>
                 </a>
             </li>
         </ul>
