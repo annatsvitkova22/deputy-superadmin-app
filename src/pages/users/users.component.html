@@ -1,4 +1,4 @@
-<div class="">
+<div>
     <app-loader *ngIf="isLoad"></app-loader>
     <div *ngIf="!isLoad" class="smart-table">
         <ng2-smart-table class="table" [settings]="settings" [source]="source" (deleteConfirm)="onDeleteConfirm($event)"

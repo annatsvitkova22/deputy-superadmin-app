@@ -4,6 +4,8 @@ import { AngularFireModule } from '@angular/fire';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { StoreModule } from '@ngrx/store';
+import { NgSelectModule } from '@ng-select/ng-select';
+import { NoopAnimationsModule } from '@angular/platform-browser/animations';
 
 import { AppRoutingModule } from './app-routing.module';
 import { environment } from '../environments/environment';
@@ -14,7 +16,7 @@ import { LoginComponent } from '../pages/login/login.component';
 import { AvatarComponent } from './avatar/avatar.component';
 import { ResetPasswordComponent } from '../pages/reset-password/reset-password.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
-import { NoopAnimationsModule } from '@angular/platform-browser/animations';
+import { UsersService } from '../pages/users/users.service';
 
 @NgModule({
   declarations: [
@@ -33,6 +35,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
+    NgSelectModule,
     FormsModule,
     ReactiveFormsModule,
     StoreModule.forRoot({authStore: authReducer}),
@@ -42,7 +45,7 @@ import { NoopAnimationsModule } from '@angular/platform-browser/animations';
   providers: [
     DeputyService,
     AuthService,
-    AuthGuard
+    AuthGuard,
   ],
   bootstrap: [AppComponent]
 })

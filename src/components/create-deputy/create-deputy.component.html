@@ -1,39 +1,71 @@
-<div class="container">
-    <div class="wrapper-form">
-        <form (ngSubmit)="onSubmit(f.value)" #f="ngForm" >
-            <app-generic-input
-                [isRequired]="true"
-                [errorMsg]="'Обов`язкове поле'"
-                [label] = "'Iм`я'"
-                [id] = "'name'"
-                ngModel name="name">
-            </app-generic-input>
-            <app-generic-input
-                [isRequired]="true"
-                [errorMsg]="'Обов`язкове поле'"
-                [label] = "'Прiзвище'"
-                [id] = "'surname'"
-                ngModel name="surname">
-            </app-generic-input>
-            <app-generic-input
-                [isRequired]="true"
-                [errorMsg]="'Обов`язкове поле'"
-                [label] = "'По батьковi'"
-                [id] = "'patronymic'"
-                ngModel name="patronymic">
-            </app-generic-input>
-            <app-generic-input
-                [isRequired]="true"
-                [errorMsg]="'Обов`язкове поле'"
-                [label] = "'Email'"
-                [id] = "'email'"
-                [pattern]="'[A-Za-z0-9._%-+]+@[A-Za-z0-9._%-]+\\.[a-z]{2,20}'"
-                ngModel name="email">
-            </app-generic-input>
+<app-loader *ngIf="isLoad"></app-loader>
+<div *ngIf="!isLoad" class="container container__extra-small">
+    <div class="card-shadow wrapper-form mt-20">
+        <h2 class="main-title mb-30">Зареєструвати депутата</h2>
+        <form name="form" [formGroup]="form" ngSubmit="form.valid && onSubmit()">
+            <div class="form-group">
+                <input
+                type="text"
+                class="input"
+                id="email"
+                placeholder="Пошта"
+                name="name"
+                formControlName="email"
+                required
+                />
+            </div>
+            <div class="form-group">
+                <input
+                type="text"
+                class="input"
+                id="name"
+                placeholder="Iм`я"
+                name="name"
+                formControlName="name"
+                required
+                />
+            </div>
+            <div class="form-group">
+                <input 
+                type="text"
+                class="input"
+                id="surname"
+                placeholder="Прiзвище"
+                name="surname"
+                formControlName="surname"
+                />
+            </div>
+            <div class="form-group">
+                <input 
+                type="text"
+                class="input"
+                id="patronymic"
+                placeholder="По батьковi"
+                name="patronymic"
+                formControlName="patronymic"
+                required
+                />
+            </div>
+            <div class="form-group">
+                <ng-select [items]="parties"
+                    class="input"
+                    bindLabel="name"
+                    placeholder="Партiя"
+                    formControlName="party">
+                </ng-select>
+            </div>
+            <div class="form-group">
+                <ng-select [items]="districts"
+                    class="input"
+                    bindLabel="name"
+                    placeholder="Район"
+                    formControlName="district">
+                </ng-select>
+            </div>
             <div *ngIf="isError" class="is-invalid is-auth">
                 <p>{{message}}</p>
             </div>
-            <button [disabled]="!f.valid" type="submit" class="btn btn-blue btn-big">Create account</button>
+            <button [disabled]='!form.valid' (click)="onSubmit()" class="btn btn-green btn-big">Зареєструвати</button>
         </form>
     </div>
 </div>

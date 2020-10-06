@@ -1,0 +1,46 @@
+@import '../../styles/variables';
+
+.card {
+    &__wrap {
+        padding: 24px;
+    }
+
+    .mr-20 {
+        margin-right: 20px;
+    }
+
+    .ml-14 {
+        margin-left: 14px;
+    }
+
+    .line {
+        padding-bottom: 16px;
+        border-bottom: 1px solid $gray-19;
+    }
+
+    .disable {
+        opacity: 0.7;
+    }
+
+    &__about {
+        font-weight: 600;
+        font-size: 15px;
+        line-height: 1.87;
+        letter-spacing: 0.02em;
+    }
+
+    &__file {
+        max-width: 188px;
+        width: 100%;
+        height: 120px;
+        background-repeat: no-repeat;
+        background-size: cover;
+        display: block;
+        margin: 0 12px 12px 0;
+    }
+
+    .textarea {
+        resize: none;
+        height: 100px;
+    }
+}

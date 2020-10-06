@@ -1,3 +1,5 @@
+import { Party, District } from './appeal.model';
+
 export interface CreateDeputyModel {
     name: string;
     surname: string;
@@ -7,6 +9,8 @@ export interface CreateDeputyModel {
     password?: string;
     fullName?: string;
     rating?: number;
+    party?: Party;
+    district?: District;
 }
 
 export interface AuthUser {
@@ -49,4 +53,6 @@ export interface User {
     role: string;
     isDesabled?: boolean;
     fullName?: string;
+    district?: string;
+    party?: string;
 }
