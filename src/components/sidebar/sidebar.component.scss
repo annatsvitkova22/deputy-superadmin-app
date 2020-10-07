@@ -31,3 +31,14 @@
         padding-left: 20px;
     }
 }
+
+@media (max-width: 660px) {
+    .sidebar {
+        width: 0;
+        position: absolute;
+
+        &--active {
+            width: 240px;
+        }
+    }
+}

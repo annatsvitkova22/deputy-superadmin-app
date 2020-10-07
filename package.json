@@ -28,6 +28,7 @@
     "add": "^2.0.6",
     "cyrillic-to-translit-js": "^3.1.0",
     "firebase": "^7.19.1",
+    "moment": "^2.29.1",
     "ng": "0.0.0",
     "ng2-smart-table": "^1.6.0",
     "ngx-slickjs": "^1.5.0",

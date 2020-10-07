@@ -5,7 +5,7 @@ import { catchError } from 'rxjs/operators';
 import { transliterate as slugify } from 'transliteration';
 import { AngularFirestore } from '@angular/fire/firestore';
 
-import { CreateDeputyModel, ResultModel, District, Party, User } from '../../models';
+import { CreateDeputyModel, ResultModel, Information, User } from '../../models';
 
 @Injectable()
 export class DeputyService {
@@ -40,38 +40,88 @@ export class DeputyService {
         }, (error) => {
             result = {
                 status: false,
-                message: error.message
+                message: 'Користувач з такою поштою вже існує'
             };
         });
 
         return result;
     }
 
-    async getDistricts(): Promise<District[]> {
-        const districts: District[] = [];
+    async getDistricts(): Promise<Information[]> {
+        const districts: Information[] = [];
         await this.db.collection('districts').get().toPromise().then(async (snapshots) => {
-            snapshots.forEach(snapshot => {
-                const district: District = {
-                    id: snapshot.id,
-                    name: snapshot.data().name
-                };
-                districts.push(district);
-            });
+            if (snapshots.size) {
+                snapshots.forEach(snapshot => {
+                    const district: Information = {
+                        id: snapshot.id,
+                        name: snapshot.data().name
+                    };
+                    districts.push(district);
+                });
+            }
         });
 
         return districts;
     }
 
-    async getParties(): Promise<Party[]> {
-        const parties: Party[] = [];
+    async addInformation(name: string, type: string): Promise<ResultModel> {
+        let result: ResultModel;
+        await this.db.collection(type).add({name}).then(snap => {
+            result = {
+                status: true,
+                message: snap.id
+            };
+        }).catch(() => {
+            result = {
+                status: false,
+            };
+        });
+
+        return result;
+    }
+
+    async editInformation(id: string, name: string, type: string): Promise<ResultModel> {
+        let result: ResultModel;
+        await this.db.collection(type).doc(id).update({name}).then(() => {
+            result = {
+                status: true
+            };
+        }).catch(() => {
+            result = {
+                status: false,
+            };
+        });
+
+        return result;
+    }
+
+    async deleteInformation(id: string, type: string): Promise<ResultModel> {
+        let result: ResultModel;
+        await this.db.collection(type).doc(id).delete().then(() => {
+            result = {
+                status: true
+            };
+        }).catch(() => {
+            result = {
+                status: false,
+            };
+        });
+
+        return result;
+    }
+
+    async getParties(): Promise<Information[]> {
+        const parties: Information[] = [];
         await this.db.collection('parties').get().toPromise().then(async (snapshots) => {
-            snapshots.forEach(snapshot => {
-                const party: Party = {
-                    id: snapshot.id,
-                    name: snapshot.data().name
-                };
-                parties.push(party);
-            });
+            if (snapshots.size) {
+                snapshots.forEach(snapshot => {
+                    const party: Information = {
+                        id: snapshot.id,
+                        name: snapshot.data().name
+                    };
+                    parties.push(party);
+                });
+            }
         });
 
         return parties;

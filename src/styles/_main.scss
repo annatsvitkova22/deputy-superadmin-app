@@ -268,6 +268,13 @@ $values: (2, 4, 6, 8, 10, 14, 12, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 40
     }
 }
 
+.smart-table {
+    overflow-x: scroll;
+    padding: 16px 24px;
+    background-color: $white;
+    margin: 20px;
+}
+
 .wrapper-form {
     padding: 35px 70px 45px;
     margin-top: 28px;
@@ -393,9 +400,25 @@ path {
     }
 }
 
+.wrapper {
+    .mat-tab-header-pagination-controls-enabled .mat-tab-header-pagination {
+        display: none;
+    }
+}
+
+@media (max-width: 599px) {
+    .mat-tab-label {
+        padding: 0 20px !important;
+    }
+}
+
 @media only screen and (max-width: 560px) {
     .wrapper-big {
         padding: 24px;
+    }
+
+    .wrapper {
+        padding: 20px 0;
     }
 
     .wrapper-form {
@@ -404,5 +427,13 @@ path {
 
     .btn {
         padding: 12px 20px;
+    }
+}
+
+@media (max-width: 374px) {
+    .wrapper {
+        .mat-tab-header-pagination-controls-enabled .mat-tab-header-pagination {
+            display: flex;
+        }
     }
 }

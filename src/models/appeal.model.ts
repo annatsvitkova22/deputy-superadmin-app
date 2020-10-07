@@ -29,12 +29,7 @@ export interface ConfirmAppealGroup {
     isReject?: boolean;
 }
 
-export interface District {
-    id: string;
-    name: string;
-}
-
-export interface Party {
+export interface Information {
     id: string;
     name: string;
 }

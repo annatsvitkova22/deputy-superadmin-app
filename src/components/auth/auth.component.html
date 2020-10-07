@@ -19,6 +19,7 @@
                     [type] = "'password'"
                     ngModel name="password">
                 </app-generic-input>
+                <app-loader *ngIf="isLoad" [class]="'loader-medium mt-10 mb-10'"></app-loader>
                 <button [disabled]="!f.valid" type="submit" class="btn btn-green btn-big mt-8">Увійти</button>
                 <div class="mt-24 d-flex justify-content-center">
                     <a [routerLink]="['/reset-password']" class="auth-btn-link">Забули пароль?</a>

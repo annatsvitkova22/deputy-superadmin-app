@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 import { AuthService } from './auth.service';
 import { ResultModel } from '../../models';
@@ -9,21 +9,21 @@ import { ResultModel } from '../../models';
   templateUrl: './auth.component.html',
   styleUrls: ['./auth.component.scss']
 })
-export class AuthComponent implements OnInit {
+export class AuthComponent {
   isError: boolean;
   message: string;
+  isLoad: boolean;
 
   constructor(
       private authService: AuthService
   ){}
 
-  ngOnInit() {}
-
   onSubmit = async ({email, password}) => {
+    this.isLoad = true;
     const result: ResultModel = await this.authService.signIn(email, password);
     if (result.status) {
       window.alert(result.message);
     }
+    this.isLoad = false;
   }
-
 }

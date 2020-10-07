@@ -3,6 +3,7 @@ import { AngularFirestore, CollectionReference } from '@angular/fire/firestore';
 import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import * as moment from 'moment';
 
 import { ResultModel, ConfirmMessage, Appeal, ConfirmAppealGroup } from '../../models';
 
@@ -119,7 +120,8 @@ export class NotificationsService {
 
     async returnAppeal(id: string): Promise<ResultModel>  {
         let result: ResultModel;
-        await this.db.collection('appeals').doc(id).update({isBlock: false}).then(() => {
+        const date = moment().utc().valueOf();
+        await this.db.collection('appeals').doc(id).update({isBlock: false, updateDate: date}).then(() => {
             result = {
                 status: true
             };

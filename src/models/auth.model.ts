@@ -1,4 +1,4 @@
-import { Party, District } from './appeal.model';
+import { Information } from "./appeal.model";
 
 export interface CreateDeputyModel {
     name: string;
@@ -9,8 +9,8 @@ export interface CreateDeputyModel {
     password?: string;
     fullName?: string;
     rating?: number;
-    party?: Party;
-    district?: District;
+    party?: Information;
+    district?: Information;
 }
 
 export interface AuthUser {

@@ -16,7 +16,7 @@ import { LoginComponent } from '../pages/login/login.component';
 import { AvatarComponent } from './avatar/avatar.component';
 import { ResetPasswordComponent } from '../pages/reset-password/reset-password.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
-import { UsersService } from '../pages/users/users.service';
+import { LoaderComponent } from './loader/loader.component';
 
 @NgModule({
   declarations: [
@@ -30,6 +30,7 @@ import { UsersService } from '../pages/users/users.service';
     MainComponent,
     SidebarComponent,
     CreateDeputyComponent,
+    LoaderComponent
   ],
   imports: [
     BrowserModule,

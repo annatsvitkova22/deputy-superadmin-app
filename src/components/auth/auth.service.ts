@@ -10,7 +10,7 @@ import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 
 import { MainState } from '../../store/main.state';
 import { AddAuth, DeleteAuth } from '../../store/auth.action';
-import { AuthState, CreateUser, AuthUser, ResultModel, UserAvatal } from '../../models';
+import { AuthState, ResultModel, UserAvatal } from '../../models';
 
 @Injectable()
 export class AuthService {
@@ -29,12 +29,20 @@ export class AuthService {
             message: ''
         };
         await this.authFire.signInWithEmailAndPassword(email, password).then(async result => {
-            await this.db.collection('users').doc(result.user.uid).get().subscribe(async (snapshot) => {
+            await this.db.collection('users').doc(result.user.uid).get().toPromise().then(async (snapshot) => {
                 const user: firebase.firestore.DocumentData = snapshot.data();
-                const name: string[] = user.name.split(' ');
-                const shortName: string = name[1] ? name[1].substr(0, 1).toUpperCase() : '' + name[0].substr(0, 1).toUpperCase();
-                await this.setUser(result.user.uid, user.email, user.role, user.imageUrl, shortName);
-                this.router.navigate(['/']);
+                if (user.role !== 'deputy') {
+                    const name: string[] = user.name.split(' ');
+                    const shortName: string = name[1] ? name[1].substr(0, 1).toUpperCase() : '' + name[0].substr(0, 1).toUpperCase();
+                    await this.setUser(result.user.uid, user.email, user.role, user.imageUrl, shortName);
+                    this.router.navigate(['/dashbord/users']);
+                } else {
+                    this.signOut();
+                    success = {
+                        status: true,
+                        message: 'У Вас недостатньо прав дня доступу'
+                    };
+                }
             });
         }).catch(err => {
             const message: string = err.code === 'auth/user-not-found' ?  'Неправильний логин' : 'Неправильний пароль';

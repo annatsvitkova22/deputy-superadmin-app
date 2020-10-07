@@ -15,8 +15,7 @@ export class HeaderComponent implements OnInit {
     shortName: string;
     imageUrl: string;
     dropdownLinks = [
-        {name: 'Мій профіль', path: '/profile'},
-        {name: 'Налаштування', path: '/edit'},
+        {name: 'Налаштування', path: '/dashbord/settings'},
         {name: 'Вийти', path: 'signout'}
     ];
     isOpen: boolean;

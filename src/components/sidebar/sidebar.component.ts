@@ -13,6 +13,8 @@ export class SidebarComponent {
         {name: 'Користувачи', path: '/dashbord/users', icon: 'people'},
         {name: 'Сповіщення', path: '/dashbord/notifications', icon: 'notifications'},
         {name: 'Зареєструвати депутата', path: '/dashbord/create-deputy', icon: 'person_add'},
+        {name: 'Партії', path: '/dashbord/parties', icon: 'work'},
+        {name: 'Райони', path: '/dashbord/districts', icon: 'location_on'},
         {name: 'Налаштування', path: '/dashbord/settings', icon: 'settings'},
     ];
 

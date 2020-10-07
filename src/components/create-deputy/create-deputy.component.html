@@ -62,6 +62,7 @@
                     formControlName="district">
                 </ng-select>
             </div>
+            <app-loader *ngIf="isLoadDeputy" [class]="'loader-medium mt-10 mb-10'"></app-loader>
             <div *ngIf="isError" class="is-invalid is-auth">
                 <p>{{message}}</p>
             </div>

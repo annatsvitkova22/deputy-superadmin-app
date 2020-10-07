@@ -9,15 +9,19 @@ import {  NgxSlickJsModule } from 'ngx-slickjs';
 import { MainRoutes } from './main.component.routing';
 import { UsersComponent } from '../../pages/users/users.component';
 import { UsersService } from '../../pages/users/users.service';
-import { LoaderComponent } from '../loader/loader.component';
 import { NotificationsComponent } from '../../pages/notifications/notifications.component';
 import { NotificationsService } from '../../pages/notifications/notificatons.service';
+import { InformationComponent } from '../information/information.component';
+import { DistrictsComponent } from '../../pages/districts/districts.component';
+import { PartiesComponent } from '../../pages/parties/parties.component';
 
 @NgModule({
     declarations: [
         UsersComponent,
-        LoaderComponent,
         NotificationsComponent,
+        InformationComponent,
+        DistrictsComponent,
+        PartiesComponent
     ],
     imports: [
         CommonModule,
