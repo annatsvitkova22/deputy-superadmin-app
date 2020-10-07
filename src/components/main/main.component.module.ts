@@ -1,48 +1,15 @@
 import { NgModule } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { Ng2SmartTableModule } from 'ng2-smart-table';
 import { CommonModule } from '@angular/common';
-import { MatIconModule } from '@angular/material/icon';
-import { MatTabsModule } from '@angular/material/tabs';
-import {  NgxSlickJsModule } from 'ngx-slickjs';
 
 import { MainRoutes } from './main.component.routing';
-import { UsersComponent } from '../../pages/users/users.component';
-import { UsersService } from '../../pages/users/users.service';
-import { NotificationsComponent } from '../../pages/notifications/notifications.component';
-import { NotificationsService } from '../../pages/notifications/notificatons.service';
-import { InformationComponent } from '../information/information.component';
-import { DistrictsComponent } from '../../pages/districts/districts.component';
-import { PartiesComponent } from '../../pages/parties/parties.component';
 
 @NgModule({
-    declarations: [
-        UsersComponent,
-        NotificationsComponent,
-        InformationComponent,
-        DistrictsComponent,
-        PartiesComponent,
-    ],
+    declarations: [],
     imports: [
         CommonModule,
-        MatIconModule,
-        MatTabsModule,
-        NgxSlickJsModule.forRoot({
-            links: {
-                jquery: 'https://code.jquery.com/jquery-3.4.0.min.js',
-                slickJs: 'https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.min.js',
-                slickCss: 'https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick.css',
-                slickThemeCss: 'https://cdn.jsdelivr.net/npm/slick-carousel@1.8.1/slick/slick-theme.css'
-            }
-        }),
         RouterModule.forChild(MainRoutes),
-        Ng2SmartTableModule,
     ],
-    providers: [
-        UsersService,
-        NotificationsService,
-    ]
+    providers: []
 })
-export class MainComponentsModule {
-
-}
+export class MainComponentsModule {}

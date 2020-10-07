@@ -11,6 +11,7 @@ import { User, ResultModel } from '../../models';
 export class UsersComponent implements OnInit {
     users: User[];
     isLoad: boolean = true;
+    isLoadCreate: boolean;
     settings = {
         add: {
             confirmCreate: true,
@@ -100,6 +101,7 @@ export class UsersComponent implements OnInit {
     }
 
     async onCreateConfirm(event) {
+        this.isLoadCreate = true;
         const {name, role, email} = event.newData;
         const isRole = this.checkRole(role);
         const isEmail = this.checkEmail(email);
@@ -114,6 +116,7 @@ export class UsersComponent implements OnInit {
         } else {
             window.alert('Помилка заповнення полів');
         }
+        this.isLoadCreate = false;
     }
 
     checkRole(role): boolean {
