@@ -1,0 +1,9 @@
+<div class="container container__small">
+    <div class="mt-28 wrapper-big card-shadow">
+        <h2 class="main-title">Налаштування</h2>
+        <app-change-email #emailChild></app-change-email>
+        <app-change-password #passwordChild></app-change-password>
+        <app-loader *ngIf="isLoad" [class]="'loader-medium mt-10 mb-10'"></app-loader>
+        <button (click)="onSave()" type="button" class="btn btn-big btn-green mt-8">Зберегти</button>
+    </div>
+</div>

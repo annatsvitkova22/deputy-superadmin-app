@@ -89,12 +89,29 @@ export class AuthService {
         if (token) {
             await this.getTokenResponse(token).toPromise().then((res) => {
                 isValid = true;
-            }).catch(err => isValid = false);
+            }).catch(err => {
+                isValid = false;
+                this.signOut();
+            });
         } else {
             isValid = false;
         }
 
         return isValid;
+    }
+
+    async getUserId(): Promise<string>  {
+        let userId: string;
+        this.store.select('authStore').subscribe((data: AuthState) =>  userId = data.user ? data.user.userId : null);
+
+        return userId;
+    }
+
+    async getUserEmail(): Promise<string>  {
+        let userEmail: string;
+        this.store.select('authStore').subscribe((data: AuthState) =>  userEmail = data.user.email);
+
+        return userEmail;
     }
 
     getTokenResponse(token: string): Observable<any> {

@@ -13,6 +13,7 @@ export class NotificationsComponent implements OnInit {
     messages: ConfirmAppealGroup[];
     appeals: Appeal[];
     isLoad: boolean = true;
+    isLoadReject: boolean;
     config: Slick.Config = {
         infinite: false,
         slidesToShow: 1,
@@ -34,7 +35,8 @@ export class NotificationsComponent implements OnInit {
     }
 
     async onApprove(id: string): Promise<void> {
-        const result: ResultModel  = await this.notificationsService.approveAppeal(id);
+        const selectedMessages: ConfirmAppealGroup[] = this.messages.filter(message => message.confirm.id === id);
+        const result: ResultModel  = await this.notificationsService.approveAppeal(id, selectedMessages[0]);
         if (result.status) {
             this.messages = this.messages.filter(message => message.confirm.id !== id);
         } else {
@@ -54,6 +56,7 @@ export class NotificationsComponent implements OnInit {
     }
 
     async onComment(message: ConfirmAppealGroup, value: string): Promise<void> {
+        this.isLoadReject = true;
         const result: ResultModel = await this.notificationsService.sendComent(message.appeal.deputyId, value, message.confirm.appealId);
         if (result.status) {
             this.messages.map(mes => {
@@ -64,10 +67,19 @@ export class NotificationsComponent implements OnInit {
                     return mes;
                 }
             });
-            this.notificationsService.confirmIsRead(message.confirm.id)
+            this.notificationsService.confirmIsRead(message.confirm.id);
         } else {
+            this.messages.map(messag => {
+                if (messag.confirm.id === message.confirm.id) {
+                    messag.isReject = false;
+                    return messag;
+                } else {
+                    return message;
+                }
+            });
             window.alert('Помилка мережі');
         }
+        this.isLoadReject = false;
     }
 
     async onApproveAppeal(id: string): Promise<void> {

@@ -1,4 +1,4 @@
-import { Information } from "./appeal.model";
+import { Information } from './appeal.model';
 
 export interface CreateDeputyModel {
     name: string;
@@ -38,6 +38,12 @@ export interface ResultModel {
     message?: string;
 }
 
+export interface ChangeEmail {
+    userId: string;
+    oldUserEmail: string;
+    newUserEmail: string;
+}
+
 export interface UserAvatal {
     imageUrl: string;
     shortName: string;
@@ -55,4 +61,10 @@ export interface User {
     fullName?: string;
     district?: string;
     party?: string;
+}
+
+export interface ChangePassword {
+    oldPassword: string;
+    password: string;
+    repeatPassword: string;
 }

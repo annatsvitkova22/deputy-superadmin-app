@@ -41,7 +41,7 @@
                                 <button class="btn btn-green mr-20" (click)="onApprove(message.confirm.id)">Підтвердити</button>
                                 <button class="btn" (click)="onReject(message.confirm.id)">Відхилити</button>
                             </div>
-                            <div *ngIf="message.isReject && !message.confirm.isRead" >
+                            <div *ngIf="message.isReject && !message.confirm.isRead && !isLoadReject" >
                                 <textarea class="input textarea"
                                     #textarea
                                     placeholder="Коментар"

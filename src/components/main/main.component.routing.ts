@@ -6,6 +6,7 @@ import { CreateDeputyComponent } from '../create-deputy/create-deputy.component'
 import { DistrictsComponent } from '../../pages/districts/districts.component';
 import { PartiesComponent } from '../../pages/parties/parties.component';
 import { AuthGuard } from '../auth.guard';
+import { SettingsComponent } from '../../pages/settings/settings.component';
 
 export const MainRoutes: Routes = [
     {
@@ -16,6 +17,7 @@ export const MainRoutes: Routes = [
             { path: 'create-deputy', component: CreateDeputyComponent, canActivate: [AuthGuard] },
             { path: 'districts', component: DistrictsComponent, canActivate: [AuthGuard] },
             { path: 'parties', component: PartiesComponent, canActivate: [AuthGuard] },
+            { path: 'settings', component: SettingsComponent, canActivate: [AuthGuard] },
         ]
     }
 ];

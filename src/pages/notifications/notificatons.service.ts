@@ -86,9 +86,11 @@ export class NotificationsService {
         return appeals;
     }
 
-    async approveAppeal(id: string): Promise<ResultModel> {
+    async approveAppeal(id: string, message: ConfirmAppealGroup): Promise<ResultModel> {
         let result: ResultModel;
-        await this.db.collection('messages').doc(id).update({type: 'done'}).then(span => {
+        const date = moment().utc().valueOf();
+        await this.db.collection('messages').doc(id).update({type: 'done'}).then(async (span) => {
+            this.db.collection('appeals').doc(message.confirm.appealId).update({status: 'Виконано', updateDate: date});
             result = {
                 status: true
             };

@@ -17,6 +17,10 @@ import { AvatarComponent } from './avatar/avatar.component';
 import { ResetPasswordComponent } from '../pages/reset-password/reset-password.component';
 import { SidebarComponent } from './sidebar/sidebar.component';
 import { LoaderComponent } from './loader/loader.component';
+import { SettingsComponent } from '../pages/settings/settings.component';
+import { ChangePasswordComponent } from './settings/change-password/change-password.component';
+import { ChangeEmailComponent } from './settings/change-email/change-email.component';
+import { SettingsService } from './settings/settings.service';
 
 @NgModule({
   declarations: [
@@ -30,7 +34,10 @@ import { LoaderComponent } from './loader/loader.component';
     MainComponent,
     SidebarComponent,
     CreateDeputyComponent,
-    LoaderComponent
+    LoaderComponent,
+    ChangeEmailComponent,
+    ChangePasswordComponent,
+    SettingsComponent
   ],
   imports: [
     BrowserModule,
@@ -46,6 +53,7 @@ import { LoaderComponent } from './loader/loader.component';
   providers: [
     DeputyService,
     AuthService,
+    SettingsService,
     AuthGuard,
   ],
   bootstrap: [AppComponent]

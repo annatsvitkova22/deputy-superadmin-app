@@ -21,13 +21,12 @@ import { PartiesComponent } from '../../pages/parties/parties.component';
         NotificationsComponent,
         InformationComponent,
         DistrictsComponent,
-        PartiesComponent
+        PartiesComponent,
     ],
     imports: [
         CommonModule,
         MatIconModule,
         MatTabsModule,
-        NgxSlickJsModule,
         NgxSlickJsModule.forRoot({
             links: {
                 jquery: 'https://code.jquery.com/jquery-3.4.0.min.js',
@@ -41,7 +40,7 @@ import { PartiesComponent } from '../../pages/parties/parties.component';
     ],
     providers: [
         UsersService,
-        NotificationsService
+        NotificationsService,
     ]
 })
 export class MainComponentsModule {
