@@ -48,6 +48,16 @@ export class UsersComponent implements OnInit {
             role: {
                 title: 'Роль',
                 type: 'string',
+                editor: {
+                    type: 'list',
+                    config: {
+                        list: [
+                            {value: 'user', title: 'user'},
+                            {value: 'deputy', title: 'deputy'},
+                            {value: 'admin', title: 'admin'}
+                        ],
+                    },
+                }
             },
             isDesabled: {
                 title: 'Заблоковано',
@@ -140,6 +150,7 @@ export class UsersComponent implements OnInit {
     }
 
     async onSaveConfirm(event): Promise<void> {
+        this.isLoadCreate = true;
         const result: ResultModel = await this.usersService.editUser(event.newData);
         if (result.status) {
             this.users = this.users.map(user => {
@@ -152,5 +163,6 @@ export class UsersComponent implements OnInit {
         } else {
             window.alert('Помилка мережі');
         }
+        this.isLoadCreate = false;
     }
 }
