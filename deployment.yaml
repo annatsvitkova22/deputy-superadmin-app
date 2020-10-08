@@ -1,0 +1,108 @@
+apiVersion: v1
+kind: Namespace
+metadata:
+  name: zmist
+
+---
+
+apiVersion: v1
+kind: Secret
+metadata:
+  name: regcred
+  namespace: zmist
+data:
+  .dockerconfigjson: {{dockerconfigjson}}
+type: kubernetes.io/dockerconfigjson
+
+---
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  labels:
+    app.kubernetes.io/name: deputies-sa
+    app.kubernetes.io/instance: deputies-sa
+    app.kubernetes.io/version: "0.0.1"
+    app.kubernetes.io/component: frontend
+    app.kubernetes.io/part-of: deputies-app
+    app.kubernetes.io/managed-by: docker
+    environment: {{env}}
+    tier: frontend
+    partition: zmist
+  name: deputies-sa
+  namespace: zmist
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app.kubernetes.io/name: deputies-sa
+  template:
+    metadata:
+      labels:
+        app.kubernetes.io/name: deputies-sa
+    spec:
+      containers:
+        - image: {{image}}
+          imagePullPolicy: "Always"
+          name: deputies-sa
+          ports:
+            - containerPort: 80
+      imagePullSecrets:
+        - name: regcred
+      restartPolicy: Always
+status: {}
+
+---
+
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    app.kubernetes.io/name: deputies-sa
+    app.kubernetes.io/instance: deputies-sa
+    app.kubernetes.io/version: "0.0.1"
+    app.kubernetes.io/component: frontend
+    app.kubernetes.io/part-of: deputies-app
+    app.kubernetes.io/managed-by: docker
+    environment: {{env}}
+    tier: frontend
+    partition: zmist
+  name: deputies-sa
+  namespace: zmist
+spec:
+  type: ClusterIP
+  ports:
+    - name: "80"
+      port: 80
+      targetPort: 80
+  selector:
+    app.kubernetes.io/name: deputies-sa
+status:
+  loadBalancer: {}
+
+---
+
+apiVersion: networking.k8s.io/v1beta1
+kind: Ingress
+metadata:
+  name: deputies-sa-ingress
+  namespace: zmist
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    cert-manager.io/cluster-issuer: letsencrypt-production
+  labels:
+    environment: {{env}}
+    tier: ingress
+    partition: zmist
+spec:
+  tls:
+    - hosts:
+        - {{host}}
+      secretName: deputies-sa-tls
+  rules:
+    - host: {{host}}
+      http:
+        paths:
+          - backend:
+              serviceName: deputies-sa
+              servicePort: 80
