@@ -40,7 +40,7 @@ export class AuthService {
                     this.signOut();
                     success = {
                         status: true,
-                        message: 'У Вас недостатньо прав дня доступу'
+                        message: 'У Вас недостатньо прав для доступу'
                     };
                 }
             });

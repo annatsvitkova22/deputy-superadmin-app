@@ -10,7 +10,7 @@ import { Router } from '@angular/router';
 export class SidebarComponent {
     @Input() isActive: boolean;
     links = [
-        {name: 'Користувачи', path: '/dashbord/users', icon: 'people'},
+        {name: 'Користувачі', path: '/dashbord/users', icon: 'people'},
         {name: 'Сповіщення', path: '/dashbord/notifications', icon: 'notifications'},
         {name: 'Зареєструвати депутата', path: '/dashbord/create-deputy', icon: 'person_add'},
         {name: 'Партії', path: '/dashbord/parties', icon: 'work'},
