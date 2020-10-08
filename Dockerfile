@@ -8,7 +8,7 @@ RUN yarn build
 
 # Stage 2 - the production environment
 FROM nginx:1.17-alpine
-COPY --from=build-deps /usr/src/app/dist/deputies-superadmin-app /usr/share/nginx/html
+COPY --from=build-deps /usr/src/app/dist/deputy-superadmin-app /usr/share/nginx/html
 COPY nginx.conf /etc/nginx/conf.d/default.conf
 EXPOSE 80
 CMD ["nginx", "-g", "daemon off;"]
