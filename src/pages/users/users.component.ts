@@ -57,7 +57,8 @@ export class UsersComponent implements OnInit {
                             {value: 'admin', title: 'admin'}
                         ],
                     },
-                }
+                },
+                editable: false,
             },
             isDesabled: {
                 title: 'Заблоковано',
