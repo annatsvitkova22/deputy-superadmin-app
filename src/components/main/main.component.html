@@ -1,0 +1,9 @@
+<app-header [isMenu]=true (onMenuActive)="onActiveSidebar($event)"></app-header>
+<main>
+    <div class="d-flex">
+        <app-sidebar [isActive]="isSidebarActive"></app-sidebar>
+        <div class="main">
+            <router-outlet></router-outlet>
+        </div>
+    </div>
+</main>

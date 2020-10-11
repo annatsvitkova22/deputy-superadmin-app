@@ -1,0 +1,72 @@
+<app-loader *ngIf="isLoad"></app-loader>
+<div *ngIf="!isLoad" class="container container__extra-small">
+    <div class="card-shadow wrapper-form mt-20">
+        <h2 class="main-title mb-30">Зареєструвати депутата</h2>
+        <form name="form" [formGroup]="form" ngSubmit="form.valid && onSubmit()">
+            <div class="form-group">
+                <input
+                type="text"
+                class="input"
+                id="email"
+                placeholder="Пошта"
+                name="name"
+                formControlName="email"
+                required
+                />
+            </div>
+            <div class="form-group">
+                <input
+                type="text"
+                class="input"
+                id="name"
+                placeholder="Iм`я"
+                name="name"
+                formControlName="name"
+                required
+                />
+            </div>
+            <div class="form-group">
+                <input 
+                type="text"
+                class="input"
+                id="surname"
+                placeholder="Прiзвище"
+                name="surname"
+                formControlName="surname"
+                />
+            </div>
+            <div class="form-group">
+                <input 
+                type="text"
+                class="input"
+                id="patronymic"
+                placeholder="По батьковi"
+                name="patronymic"
+                formControlName="patronymic"
+                required
+                />
+            </div>
+            <div class="form-group">
+                <ng-select [items]="parties"
+                    class="input"
+                    bindLabel="name"
+                    placeholder="Партiя"
+                    formControlName="party">
+                </ng-select>
+            </div>
+            <div class="form-group">
+                <ng-select [items]="districts"
+                    class="input"
+                    bindLabel="name"
+                    placeholder="Район"
+                    formControlName="district">
+                </ng-select>
+            </div>
+            <app-loader *ngIf="isLoadDeputy" [class]="'loader-medium mt-10 mb-10'"></app-loader>
+            <div *ngIf="isError" class="is-invalid is-auth">
+                <p>{{message}}</p>
+            </div>
+            <button [disabled]='!form.valid' (click)="onSubmit()" class="btn btn-green btn-big">Зареєструвати</button>
+        </form>
+    </div>
+</div>
