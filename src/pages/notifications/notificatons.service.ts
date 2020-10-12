@@ -5,11 +5,12 @@ import { catchError } from 'rxjs/operators';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import * as moment from 'moment';
 
+import { environment } from '../../environments/environment';
 import { ResultModel, ConfirmMessage, Appeal, ConfirmAppealGroup } from '../../models';
 
 @Injectable()
 export class NotificationsService {
-    private sendComentDeputyPath: string = 'https://us-central1-deputy-app.cloudfunctions.net/sendCommentDeputy';
+
     constructor(
         private httpClient: HttpClient,
         private db: AngularFirestore,
@@ -158,7 +159,7 @@ export class NotificationsService {
     }
 
     sendComentDeputy(deputyId: string, message: string, appealId: string): Observable<any> {
-        return this.httpClient.post(this.sendComentDeputyPath, {deputyId, message, appealId})
+        return this.httpClient.post(environment.sendComentDeputyPath, {deputyId, message, appealId})
             .pipe(catchError(this.errorHandler));
     }
 

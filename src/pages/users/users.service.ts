@@ -5,13 +5,11 @@ import { Observable, throwError } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 import { transliterate as slugify } from 'transliteration';
 
+import { environment } from '../../environments/environment';
 import { User, ResultModel } from '../../models';
 
 @Injectable()
 export class UsersService {
-    private desibleUserPath: string = 'https://us-central1-deputy-app.cloudfunctions.net/disabledUser';
-    private editUserPath: string = 'https://us-central1-deputy-app.cloudfunctions.net/editUser';
-    private createUserPath: string = 'https://us-central1-deputy-app.cloudfunctions.net/createCustomUser';
 
     constructor(
         private httpClient: HttpClient,
@@ -77,7 +75,7 @@ export class UsersService {
     }
 
     createUser(data: User): Observable<any> {
-        return this.httpClient.post(this.createUserPath, data)
+        return this.httpClient.post(environment.createDeputyPath, data)
             .pipe(catchError(this.errorHandler));
     }
 
@@ -114,12 +112,12 @@ export class UsersService {
     }
 
     sendUserOnEdit(user: User): Observable<any> {
-        return this.httpClient.post(this.editUserPath, user)
+        return this.httpClient.post(environment.editUserPath, user)
             .pipe(catchError(this.errorHandler));
     }
 
     sendUserOnDesible(userId: string): Observable<any> {
-        return this.httpClient.post(this.desibleUserPath, {userId})
+        return this.httpClient.post(environment.desibleUserPath, {userId})
             .pipe(catchError(this.errorHandler));
     }
 

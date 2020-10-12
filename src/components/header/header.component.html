@@ -13,7 +13,7 @@
                         <img src="assets/images/logo.svg" alt="слуга полтави" />
                     </a>
                     <div class="d-flex align-items-center">
-                        <div class="header__avatar">
+                        <div *ngIf="!isMobile"  class="header__avatar" (clickOutside)="outside($event)">
                             <div *ngIf="imageUrl || shortName" (click)="onOpenDropdown()">
                                 <app-avatar  [imageUrl]="imageUrl" [name]="shortName" [class]="'avatar__medium header-avatar'"></app-avatar>
                             </div>
@@ -34,7 +34,7 @@
                 </div>
             </div>
             <div class="header__mobile">
-                <div class="header__avatar">
+                <div *ngIf="isMobile"  class="header__avatar" (clickOutside)="outside($event)">
                     <div *ngIf="imageUrl || shortName" (click)="onOpenDropdown()" class="header__nav-link">
                         <app-avatar [imageUrl]="imageUrl" [name]="shortName" [class]="'avatar__medium header-avatar'"></app-avatar>
                     </div>

@@ -5,11 +5,11 @@ import { catchError } from 'rxjs/operators';
 import { transliterate as slugify } from 'transliteration';
 import { AngularFirestore } from '@angular/fire/firestore';
 
+import { environment } from '../../environments/environment';
 import { CreateDeputyModel, ResultModel, Information, User } from '../../models';
 
 @Injectable()
 export class DeputyService {
-    private createDeputyPath: string = 'https://us-central1-deputy-app.cloudfunctions.net/createCustomUser';
 
     constructor(
         private httpClient: HttpClient,
@@ -128,7 +128,7 @@ export class DeputyService {
     }
 
     sendEmailDeputy(data: User): Observable<any> {
-        return this.httpClient.post(this.createDeputyPath, data)
+        return this.httpClient.post(environment.createDeputyPath, data)
             .pipe(catchError(this.errorHandler));
     }
 

@@ -32,6 +32,7 @@ import { DistrictsComponent } from '../pages/districts/districts.component';
 import { PartiesComponent } from '../pages/parties/parties.component';
 import { NotificationsService } from '../pages/notifications/notificatons.service';
 import { UsersService } from '../pages/users/users.service';
+import { ClickOutsideDirective } from './header/click-outside.directive';
 
 @NgModule({
   declarations: [
@@ -53,7 +54,8 @@ import { UsersService } from '../pages/users/users.service';
     PartiesComponent,
     ChangeEmailComponent,
     ChangePasswordComponent,
-    SettingsComponent
+    SettingsComponent,
+    ClickOutsideDirective
   ],
   imports: [
     BrowserModule,
