@@ -1,8 +1,8 @@
 # Stage 1 - the build process
-FROM node:13.12.0 as build-deps
+FROM node:12.16.0 as build-deps
 WORKDIR /usr/src/app
 COPY package.json yarn.lock ./
-RUN yarn
+RUN yarn install --network-timeout 1000000
 COPY . .
 RUN yarn build
 
