@@ -24,12 +24,12 @@ export const environment = {
     appId: '1:305771251450:web:e18f869d6bba9fcf7a2b43',
     measurementId: 'G-K51M9YS86S'
   },
-  checkTokenPath: 'https://us-central1-deputies-apps.cloudfunctions.net/checkToken',
-  createDeputyPath: 'https://us-central1-deputies-apps.cloudfunctions.net/createCustomUser',
-  changeEmail: 'https://us-central1-deputies-apps.cloudfunctions.net/updateEmail',
-  sendComentDeputyPath: 'https://us-central1-deputies-apps.cloudfunctions.net/sendCommentDeputy',
-  desibleUserPath: 'https://us-central1-deputies-apps.cloudfunctions.net/disabledUser',
-  editUserPath: 'https://us-central1-deputies-apps.cloudfunctions.net/editUser',
+  checkTokenPath: 'https://europe-west3-deputies-apps.cloudfunctions.net/checkToken',
+  createDeputyPath: 'https://europe-west3-deputies-apps.cloudfunctions.net/createCustomUser',
+  changeEmail: 'https://europe-west3-deputies-apps.cloudfunctions.net/updateEmail',
+  sendComentDeputyPath: 'https://europe-west3-deputies-apps.cloudfunctions.net/sendCommentDeputy',
+  desibleUserPath: 'https://europe-west3-deputies-apps.cloudfunctions.net/disabledUser',
+  editUserPath: 'https://europe-west3-deputies-apps.cloudfunctions.net/editUser',
 };
 
 /*
