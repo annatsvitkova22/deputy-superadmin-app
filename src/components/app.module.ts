@@ -33,6 +33,8 @@ import { PartiesComponent } from '../pages/parties/parties.component';
 import { NotificationsService } from '../pages/notifications/notificatons.service';
 import { UsersService } from '../pages/users/users.service';
 import { ClickOutsideDirective } from './header/click-outside.directive';
+import { AppealsService } from '../pages/appeals/appeals.service';
+import { AppealsComponent } from '../pages/appeals/appeals.component';
 
 @NgModule({
   declarations: [
@@ -55,7 +57,8 @@ import { ClickOutsideDirective } from './header/click-outside.directive';
     ChangeEmailComponent,
     ChangePasswordComponent,
     SettingsComponent,
-    ClickOutsideDirective
+    ClickOutsideDirective,
+    AppealsComponent
   ],
   imports: [
     BrowserModule,
@@ -85,6 +88,7 @@ import { ClickOutsideDirective } from './header/click-outside.directive';
     SettingsService,
     UsersService,
     NotificationsService,
+    AppealsService,
     AuthGuard,
   ],
   bootstrap: [AppComponent]

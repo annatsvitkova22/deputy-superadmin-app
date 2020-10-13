@@ -4,6 +4,7 @@ export interface Appeal {
     description: string;
     userId: string;
     deputyId: string;
+    status?: string;
     fileImageUrl?: string[];
     fileUrl?: string[];
     isRead?: boolean;
