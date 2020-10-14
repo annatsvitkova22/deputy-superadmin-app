@@ -274,6 +274,12 @@ $values: (2, 4, 6, 8, 10, 14, 12, 16, 18, 20, 22, 24, 26, 28, 30, 32, 34, 36, 40
     }
 }
 
+.appeals {
+    .ng2-smart-action.ng2-smart-action-add-add {
+        display: none;
+    }
+}
+
 .form-control.ng-valid {
     padding: 4px 8px;
 
