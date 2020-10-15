@@ -141,7 +141,7 @@ export class UsersComponent implements OnInit {
 
     checkEmail(email): boolean {
         let isEmail: boolean = false;
-        const pattern = '[A-Za-z0-9._%-+]+@[A-Za-z0-9._%-]+\\.[a-z]{2,20}';
+        const pattern = '[A-Za-z0-9._%+-]+@[A-Za-z0-9._%-]+\\.[a-z]{2,20}';
         const result = email.match(pattern); 
         if (result) {
             isEmail = true;
