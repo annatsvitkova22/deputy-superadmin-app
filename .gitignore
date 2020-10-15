@@ -34,6 +34,9 @@ src/environments/*
 !.vscode/extensions.json
 .history/*
 
+src/environments/*
+!src/environments/*.example.ts
+
 # misc
 /.sass-cache
 /connect.lock
