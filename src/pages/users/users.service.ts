@@ -83,7 +83,6 @@ export class UsersService {
         let result: ResultModel;
         await this.sendUserOnDesible(userId).toPromise().then(async (res: boolean) => {
             await this.deleteAppeals(userId);
-            await this.deleteComment(userId);
             result = {
                 status: res
             };
@@ -99,14 +98,25 @@ export class UsersService {
 
     async deleteAppeals(userId: string): Promise<void> {
         await this.db.collection('appeals', ref => ref.where('userId', '==', userId)).get().toPromise().then(snaps => {
-            snaps.forEach(snap => {
-                this.db.collection('appeals').doc(snap.id).delete();
-            });
+            if (snaps.size) {
+                snaps.forEach(snap => {
+                    this.db.collection('appeals').doc(snap.id).delete();
+                    this.deleteComment(snap.id);
+                });
+            }
+        });
+        await this.db.collection('appeals', ref => ref.where('deputyId', '==', userId)).get().toPromise().then(snaps => {
+            if (snaps.size) {
+                snaps.forEach(snap => {
+                    this.db.collection('appeals').doc(snap.id).delete();
+                    this.deleteComment(snap.id);
+                });
+            }
         });
     }
 
-    async deleteComment(userId: string): Promise<void> {
-        await this.db.collection('messages', ref => ref.where('userId', '==', userId)).get().toPromise().then(snaps => {
+    async deleteComment(appealsId: string): Promise<void> {
+        await this.db.collection('messages', ref => ref.where('appealId', '==', appealsId)).get().toPromise().then(snaps => {
             snaps.forEach(snap => {
                 this.db.collection('messages').doc(snap.id).delete();
             });
