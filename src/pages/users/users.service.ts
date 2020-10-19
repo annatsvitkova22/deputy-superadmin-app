@@ -81,7 +81,9 @@ export class UsersService {
 
     async desibleUser(userId: string): Promise<ResultModel> {
         let result: ResultModel;
-        await this.sendUserOnDesible(userId).toPromise().then((res: boolean) => {
+        await this.sendUserOnDesible(userId).toPromise().then(async (res: boolean) => {
+            await this.deleteAppeals(userId);
+            await this.deleteComment(userId);
             result = {
                 status: res
             };
@@ -93,6 +95,22 @@ export class UsersService {
         });
 
         return result;
+    }
+
+    async deleteAppeals(userId: string): Promise<void> {
+        await this.db.collection('appeals', ref => ref.where('userId', '==', userId)).get().toPromise().then(snaps => {
+            snaps.forEach(snap => {
+                this.db.collection('appeals').doc(snap.id).delete();
+            });
+        });
+    }
+
+    async deleteComment(userId: string): Promise<void> {
+        await this.db.collection('messages', ref => ref.where('userId', '==', userId)).get().toPromise().then(snaps => {
+            snaps.forEach(snap => {
+                this.db.collection('messages').doc(snap.id).delete();
+            });
+        });
     }
 
     async editUser(user: User): Promise<ResultModel> {
