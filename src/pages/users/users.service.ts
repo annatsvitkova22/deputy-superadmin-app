@@ -40,8 +40,8 @@ export class UsersService {
         let result: ResultModel;
         const randomPassword: string = Math.random().toString(36).substring(2) + Math.max(1, Math.min(10));
         const randomId: string = Math.random().toString(36).replace(/[^a-z]+/g, '').substr(0, 4);
-        let fullName;
-        const customName = user.name.split(' ');
+        let fullName: string;
+        const customName: string[] = user.name.split(' ');
         if (user.role === 'deputy') {
             fullName = user.surname.toLocaleLowerCase() + '-' + user.name.toLocaleLowerCase()  + '-' + randomId;
         } else {
@@ -83,6 +83,22 @@ export class UsersService {
         let result: ResultModel;
         await this.sendUserOnDesible(userId).toPromise().then(async (res: boolean) => {
             await this.deleteAppeals(userId);
+            result = {
+                status: res
+            };
+        }, (error) => {
+            result = {
+                status: false,
+                message: error.message
+            };
+        });
+
+        return result;
+    }
+
+    async deleteUser(userId: string): Promise<ResultModel> {
+        let result: ResultModel;
+        await this.sendUserOnDelete(userId).toPromise().then(async (res: boolean) => {
             result = {
                 status: res
             };
@@ -141,6 +157,11 @@ export class UsersService {
 
     sendUserOnEdit(user: User): Observable<any> {
         return this.httpClient.post(environment.editUserPath, user)
+            .pipe(catchError(this.errorHandler));
+    }
+
+    sendUserOnDelete(userId: string): Observable<any> {
+        return this.httpClient.post(environment.deleteUserPath, {userId})
             .pipe(catchError(this.errorHandler));
     }
 

@@ -19,6 +19,7 @@ export const environment = {
     createDeputyPath: 'BASE_FUNCTIONS_URL/createCustomUser',
     sendComentDeputyPath: 'BASE_FUNCTIONS_URL/sendCommentDeputy',
     desibleUserPath: 'BASE_FUNCTIONS_URL/disabledUser',
+    deleteUserPath: 'BASE_FUNCTIONS_URL/deleteUser',
     editUserPath: 'BASE_FUNCTIONS_URL/editUser',
 };
 

@@ -84,7 +84,19 @@ export class UsersComponent implements OnInit {
     }
 
     async onDeleteConfirm(event) {
-        if (window.confirm('Ви впевнені, що хочете видалити?')) {
+        if (event.data.isDesabled) {
+            if (window.confirm('Ви впевнені, що хочете видалити користувача?')) {
+                event.confirm.resolve();
+                const result: ResultModel = await this.usersService.deleteUser(event.data.id);
+                if (!result.status) {
+                    window.alert('Помилка мережі');
+                } else {
+                    this.users = this.users.filter(user => user.id !== event.data.id);
+                }
+            } else {
+                event.confirm.reject();
+            }
+        } else if (window.confirm('Ви впевнені, що хочете заблокувати користувача?')) {
             event.confirm.resolve();
             event.data.isDesabled = true;
             this.users = this.users.map(user => {
@@ -104,7 +116,6 @@ export class UsersComponent implements OnInit {
                     }
                     return user;
                 });
-                this.source = new LocalDataSource(this.users);
             }
         } else {
             event.confirm.reject();

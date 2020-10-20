@@ -29,6 +29,7 @@ export const environment = {
   changeEmail: 'https://europe-west3-deputy-app.cloudfunctions.net/updateEmail',
   sendComentDeputyPath: 'https://europe-west3-deputy-app.cloudfunctions.net/sendCommentDeputy',
   desibleUserPath: 'https://europe-west3-deputy-app.cloudfunctions.net/disabledUser',
+  deleteUserPath: 'https://europe-west3-deputy-app.cloudfunctions.net/deleteUser',
   editUserPath: 'https://europe-west3-deputy-app.cloudfunctions.net/editUser',
 };
 
