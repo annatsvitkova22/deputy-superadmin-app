@@ -50,10 +50,19 @@ export class AppealsService {
 
     async deleteAppeal(id: string): Promise<ResultModel> {
         let result: ResultModel;
-        await this.db.collection('appeals').doc(id).delete().then(async () => {
-            result = {
-                status: true
-            };
+        const appealRef = this.db.collection('appeals').doc(id);
+        await appealRef.get().toPromise().then(async snap => {
+            const { deputyId } = snap.data();
+            const deputyRef = this.db.collection('users').doc(deputyId);
+            await deputyRef.get().toPromise().then(async deputySnap => {
+                const {countAppeals} = deputySnap.data();
+                deputyRef.update({countAppeals: countAppeals - 1});
+                await appealRef.delete().then(async () => {
+                    result = {
+                        status: true
+                    };
+                });
+            });
         }).catch(() => {
             result = {
                 status: false,
@@ -63,5 +72,4 @@ export class AppealsService {
 
         return result;
     }
-
 }
